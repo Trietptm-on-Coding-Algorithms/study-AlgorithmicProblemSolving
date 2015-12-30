@@ -1,29 +1,46 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-    public static void main (String[] args)
-	{
-		Scanner sc = new Scanner(System.in);
-		int c = sc.nextInt();
-		while (c-- > 0) {
-			int n = sc.nextInt();
-			int l = sc.nextInt();
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = null;
+		int cNum = Integer.parseInt(br.readLine());
+		for (int i=0; i<cNum; i++){
+			st = new StringTokenizer(br.readLine());
+			int n = Integer.parseInt(st.nextToken());
+			int l = Integer.parseInt(st.nextToken());
+			int ol = l;
+			int[] cost = new int[n];
+			int[] sum_buf = new int[n+1];
+			sum_buf[0] = 0;
+			st = new StringTokenizer(br.readLine());
+			for (int j=0; j<n; j++) {
+				cost[j] = Integer.parseInt(st.nextToken());
+				sum_buf[j+1] = sum_buf[j]+cost[j];
+			}
 
-			Integer[] num = new Integer[n+1];
-			num[0] = 0;
-			for (int i = 1; i <= n; i++)
-				num[i] = num[i-1] + sc.nextInt();
+			double min = 9999999;
 
-			double min = 101;
-			for (int i = l; i <= n; i++)
-				for (int j = i; j <= n; j++) {
-					double a = (num[j] - num[j - i]) * 1.0 / i;
-					if (min > a) min = a;
-				}
-
-	        System.out.println(min);
+			while (l<=n && l<2*ol){
+				int minSum = 9999999;
+				for (int j=0; j+l<=n; j++)
+					minSum = Math.min(sum_buf[j+l]-sum_buf[j], minSum);
+				min = Math.min((Double.parseDouble(divide(minSum, l++, 0).toString())), min);
+			}
+			System.out.println(String.format("%.8f", min));
 		}
+		br.close();
+	}
+	private static StringBuilder divide(int child, int mother, int i) {
+		StringBuilder sb = new StringBuilder();
+		if (i==1)
+			sb.append('.');
 
-		sc.close();
+		sb.append((child/mother));
+		child = (child%mother)*10;
+		if (child != 0 && i<8)
+			return sb.append(divide(child, mother, i+1));
+		else return sb;
 	}
 }
