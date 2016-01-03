@@ -15,3 +15,7 @@
 ##언어
 Java를 사용하여, 문제를 해결하고 있음
 단, 여태까지 제출된 최고의 답안은 각기 다른 언어로 작성되어 있음
+
+##문제 설명
+[FESTIVAL](https://algospot.com/judge/problem/read/FESTIVAL)
+[PICNIC](https://algospot.com/judge/problem/read/PICNIC)
