@@ -19,3 +19,4 @@ Java를 사용하여, 문제를 해결하고 있음
 ##문제 설명
 [FESTIVAL](https://algospot.com/judge/problem/read/FESTIVAL)
 [PICNIC](https://algospot.com/judge/problem/read/PICNIC)
+[BOARDCOVER](https://algospot.com/judge/problem/read/DOARDCOVER)
